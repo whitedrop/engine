@@ -1,6 +1,8 @@
 #include "Whitedrop.h"
 
 namespace Whitedrop {
+	WhitedropEngine engine;
+
 	WhitedropEngine::WhitedropEngine(void)
 	    : mRoot(0),
 	    mCamera(0),
@@ -411,23 +413,30 @@ namespace Whitedrop {
 	{
 		mSceneMgr->setAmbientLight(Ogre::ColourValue(0.5f, 0.5f, 0.5f));
  
-    	// Create an Entity
-    	Ogre::Entity* ogreHead = mSceneMgr->createEntity("Head", "ogrehead.mesh");
- 	
-    	// Create a SceneNode and attach the Entity to it
-    	Ogre::SceneNode* headNode = mSceneMgr->getRootSceneNode()->createChildSceneNode("HeadNode");
-    	headNode->attachObject(ogreHead);
- 	
+    	mWorld.setSceneMgr(mSceneMgr);
+ 		mWorld.setup();
     	// Create a Light and set its position
     	Ogre::Light* light = mSceneMgr->createLight("MainLight");
     	light->setPosition(20.0f, 80.0f, 50.0f);
 	}
+	void WhitedropEngine::setupWorld(void)
+	{
+		mWorld = World(mSceneMgr);
+	}
 	bool init() {
+		engine.setupWorld();
 		return(true);
 	}
+	void WhitedropEngine::addEntity(Entity ent){
+		mWorld.addEntity(ent);
+	}
+   void spawnEntity(std::string mesh, std::string id, Vector3 position, Vector3 dims)
+   {
+   		Entity ent = Entity(mesh, id, dims.getOgreVector(), position.getOgreVector());
+   		engine.addEntity(ent);
+   }
 
 	void run() {
-		WhitedropEngine engine;
 		try {
             engine.go();
         } catch( Ogre::Exception& e ) {

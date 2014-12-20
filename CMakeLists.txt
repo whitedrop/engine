@@ -86,12 +86,18 @@ set(HDRS
 	${HDRS}
 	./engine/lib/Whitedrop.h
 	./engine/lib/base.h
+	./engine/lib/Entity.h
+	./engine/lib/World.h
+	./engine/lib/Vector3.h
 	PARENT_SCOPE
 )
  
 set(SRCS
 	${SRCS}
 	./engine/lib/Whitedrop.cpp
+	./engine/lib/Entity.cpp
+	./engine/lib/World.cpp
+	./engine/lib/Vector3.cpp
 	PARENT_SCOPE
 )
 
