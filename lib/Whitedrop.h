@@ -70,7 +70,7 @@ namespace Whitedrop {
 	};
 	bool init();
 	void run();
-	void spawnEntity(std::string mesh, std::string id, Vector3 position, Vector3 dims);
+	void spawnEntity(std::string mesh, std::string id, Vector3 position, Vector3 dims, std::string material);
 
 
 }

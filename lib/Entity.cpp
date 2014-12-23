@@ -3,12 +3,13 @@
 
 namespace Whitedrop {
 	
-	Entity::Entity(std::string mesh, std::string id, Ogre::Vector3 dimensions, Ogre::Vector3 position)
+	Entity::Entity(std::string mesh, std::string id, Ogre::Vector3 dimensions, Ogre::Vector3 position, std::string material)
 	{
 		mMesh = mesh;
 		mId = id;
 		mDimensions = dimensions;
 		mPosition = position;
+		mMaterial = material;
 	}
 	Entity::~Entity(void)
 	{
@@ -21,6 +22,7 @@ namespace Whitedrop {
 		mId = ref.mId;
 		mDimensions = ref.mDimensions;
 		mPosition = ref.mPosition;
+		mMaterial = ref.mMaterial;
 	}
 	Entity& Entity:: operator=(Entity ref)
 	{
@@ -28,7 +30,10 @@ namespace Whitedrop {
 		mId = ref.mId;
 		mDimensions = ref.mDimensions;
 		mPosition = ref.mPosition;
+		mMaterial = ref.mMaterial;
 		return *this;
+
+
 
 	}
 
@@ -36,7 +41,7 @@ namespace Whitedrop {
 	{
 		// Create an Entity
 		mEntity = sceneMgr->createEntity(mId, mMesh);
- 		
+ 		mEntity->setMaterialName(mMaterial);
     	// Create a SceneNode and attach the Entity to it
 		mNode = sceneMgr->getRootSceneNode()->createChildSceneNode(mId + "_node");
 

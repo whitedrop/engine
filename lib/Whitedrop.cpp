@@ -430,9 +430,9 @@ namespace Whitedrop {
 	void WhitedropEngine::addEntity(Entity ent){
 		mWorld.addEntity(ent);
 	}
-   void spawnEntity(std::string mesh, std::string id, Vector3 position, Vector3 dims)
+   void spawnEntity(std::string mesh, std::string id, Vector3 position, Vector3 dims, std::string material)
    {
-   		Entity ent = Entity(mesh, id, dims.getOgreVector(), position.getOgreVector());
+   		Entity ent = Entity(mesh, id, dims.getOgreVector(), position.getOgreVector(), material);
    		engine.addEntity(ent);
    }
 

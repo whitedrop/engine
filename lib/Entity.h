@@ -6,7 +6,7 @@
 namespace Whitedrop {
 	class Entity {
 	public:
-		Entity(std::string mesh, std::string id, Ogre::Vector3 dimensions, Ogre::Vector3 position);
+		Entity(std::string mesh, std::string id, Ogre::Vector3 dimensions, Ogre::Vector3 position, std::string material);
 		Entity(const Entity &ref);
 		Entity& operator=(const Entity ent);
 		virtual ~Entity(void);
@@ -18,6 +18,7 @@ namespace Whitedrop {
 	protected:
 		std::string 			mMesh = "cube.mesh";
 		std::string 			mId;
+		std::string 			mMaterial;
 		Ogre::Vector3 			mDimensions;
 		Ogre::Vector3 			mPosition;
 		Ogre::Entity* 			mEntity;
